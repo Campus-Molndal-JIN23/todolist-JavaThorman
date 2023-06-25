@@ -1,47 +1,68 @@
-package org.campusmolndal;
-
-import java.util.Scanner;
+import java.util.*;
 
 public class ScannerInput {
-    private Scanner input;
+    private final Scanner input;
 
-    public ScannerInput() {
-        input = new Scanner(System.in);
+    public ScannerInput(Scanner scanner) {
+        this.input = scanner;
     }
 
     /**
      * Läser in ett heltal från användaren.
+     * @param text Texten som ska visas för att be användaren om inmatning.
      * @return Det inmatade heltalet.
      */
-    public int readInt() {
-        System.out.print("Skriv in ett heltal: ");
-        int value = input.nextInt();
-        input.nextLine();
-        return value;
+    public int readInt(String text) {
+        while (true) {
+            try {
+                System.out.print(text + " : ");
+                int value = input.nextInt();
+                input.nextLine();
+                return value;
+            } catch (InputMismatchException e) {
+                input.nextLine(); // Rensar bort ogiltig inmatning från scanner
+                System.out.println("Ogiltigt värde. Var god ange ett heltal.");
+            }
+        }
     }
 
     /**
      * Läser in en text från användaren.
+     * @param text Texten som ska visas för att be användaren om inmatning.
      * @return Den inmatade texten.
      */
-    public String readStringTodo() {
-        System.out.print("Skriv in en TODO text: ");
-        return input.nextLine();
-    }
-    public String readStringAssignee() {
-        System.out.print("Vem skall göra denna TODO?: ");
-        return input.nextLine();
+    public String readString(String text) {
+        System.out.print(text + " : ");
+        String inputString = input.nextLine().trim();
+
+        while (inputString.isEmpty()) {
+            System.out.println("Fältet får inte vara tomt. Var god ange en text.");
+            System.out.print(text + " : ");
+            inputString = input.nextLine().trim();
+        }
+
+        return inputString;
     }
 
     /**
      * Läser in en boolean (true/false) från användaren.
+     * @param text Texten som ska visas för att be användaren om inmatning.
      * @return Det inmatade boolean-värdet.
+     * @throws IllegalArgumentException om ogiltigt värde matas in.
      */
-    public boolean readBoolean() {
-        System.out.print("Är denna TODO färdig? (true / false): ");
-        boolean value = input.nextBoolean();
-        input.nextLine();
-        return value;
+    public boolean readBoolean(String text) {
+        while (true) {
+            System.out.print(text + " : ");
+            String inputString = input.nextLine();
+
+            if (inputString.equalsIgnoreCase("true")) {
+                return true;
+            } else if (inputString.equalsIgnoreCase("false")) {
+                return false;
+            } else {
+                throw new IllegalArgumentException("Ogiltigt värde. Var god ange 'true' eller 'false'.");
+            }
+        }
     }
 
     /**
