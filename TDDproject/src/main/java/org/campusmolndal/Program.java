@@ -15,14 +15,14 @@ public class Program {
         boolean running = true;
 
         while (running) {
-            System.out.println("==== Todo Program ====");
-            System.out.println("1. Create Todo");
-            System.out.println("2. View All Todos");
-            System.out.println("3. View Todo by ID");
-            System.out.println("4. Update Todo");
-            System.out.println("5. Delete Todo");
-            System.out.println("6. Exit");
-            System.out.print("\nEnter your choice");
+            scannerInput.systemOutputs("==== Todo Program ====");
+            scannerInput.systemOutputs("1. Create Todo");
+            scannerInput.systemOutputs("2. View All Todos");
+            scannerInput.systemOutputs("3. View Todo by ID");
+            scannerInput.systemOutputs("4. Update Todo");
+            scannerInput.systemOutputs("5. Delete Todo");
+            scannerInput.systemOutputs("6. Exit");
+            scannerInput.systemOutputs("\nEnter your choice");
 
             int choice = scannerInput.readInt("");
 
@@ -46,7 +46,7 @@ public class Program {
                     running = false;
                     break;
                 default:
-                    System.out.println("\nInvalid choice. Please try again.");
+                    scannerInput.systemOutputs("\nInvalid choice. Please try again.");
             }
         }
     }
@@ -63,14 +63,14 @@ public class Program {
 
         todoFacade.createTodo(message, done, assignedTo);
 
-        System.out.println("\nTodo created successfully.\n");
+        scannerInput.systemOutputs("\nTodo created successfully.\n");
     }
 
     private void viewAllTodos() {
-        System.out.println("\n==== All Todos ====\n");
+        scannerInput.systemOutputs("\n==== All Todos ====\n");
 
         for (Todo todo : todoFacade.getAllTodos()) {
-
+            // Print todo details
         }
     }
 
@@ -80,13 +80,13 @@ public class Program {
         Todo todo = todoFacade.getTodoById(id);
 
         if (todo != null) {
-            System.out.println("==== Todo Details ====\n");
-            System.out.println("\nID: " + todo.getId());
-            System.out.println("\nMessage: " + todo.getMessage());
-            System.out.println("\nDone: " + todo.isDone());
-            System.out.println("\nAssigned To: " + todo.getAssignedTo());
+            scannerInput.systemOutputs("==== Todo Details ====\n");
+            scannerInput.systemOutputs("\nID: " + todo.getId());
+            scannerInput.systemOutputs("\nMessage: " + todo.getMessage());
+            scannerInput.systemOutputs("\nDone: " + todo.isDone());
+            scannerInput.systemOutputs("\nAssigned To: " + todo.getAssignedTo());
         } else {
-            System.out.println("\nTodo not found.");
+            scannerInput.systemOutputs("\nTodo not found.");
         }
     }
 
@@ -96,7 +96,7 @@ public class Program {
         Todo todo = todoFacade.getTodoById(id);
 
         if (todo != null) {
-            System.out.println("==== Update Todo ====");
+            scannerInput.systemOutputs("==== Update Todo ====");
             String message = scannerInput.readString("\nEnter the updated Todo message");
             boolean done = scannerInput.readBoolean("\nIs the Todo done? (true/false)");
             String assignedTo = scannerInput.readString("\nEnter the updated Todo assignee");
@@ -107,9 +107,9 @@ public class Program {
 
             todoFacade.updateTodo(todo);
 
-            System.out.println("\nTodo updated successfully.\n");
+            scannerInput.systemOutputs("\nTodo updated successfully.\n");
         } else {
-            System.out.println("Todo not found.");
+            scannerInput.systemOutputs("Todo not found");
         }
     }
 
@@ -120,10 +120,9 @@ public class Program {
 
         if (todo != null) {
             todoFacade.deleteTodoById(id);
-            System.out.println("Todo deleted successfully.");
+            scannerInput.systemOutputs("Todo deleted successfully.");
         } else {
-            System.out.println("Todo not found.");
+            scannerInput.systemOutputs("Todo not found");
         }
     }
-
 }

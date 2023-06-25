@@ -1,4 +1,5 @@
 package org.campusmolndal;
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class ScannerInput {
@@ -66,7 +67,9 @@ public class ScannerInput {
         }
     }
 
-
+    public void systemOutputs(String output){
+        System.out.println(output);
+    }
     /**
      * Stänger scanner-inputen och frigör resurser.
      */
