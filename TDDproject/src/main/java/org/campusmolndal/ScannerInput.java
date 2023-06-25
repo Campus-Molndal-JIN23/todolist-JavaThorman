@@ -1,3 +1,4 @@
+package org.campusmolndal;
 import java.util.*;
 
 public class ScannerInput {
@@ -60,10 +61,11 @@ public class ScannerInput {
             } else if (inputString.equalsIgnoreCase("false")) {
                 return false;
             } else {
-                throw new IllegalArgumentException("Ogiltigt värde. Var god ange 'true' eller 'false'.");
+                System.out.println("Invalid value. Please enter 'true' or 'false'.");
             }
         }
     }
+
 
     /**
      * Stänger scanner-inputen och frigör resurser.

@@ -35,7 +35,7 @@ public class Database {
         // Hämta en referens till samlingen
         collection = database.getCollection("todos");
 
-        System.out.println("Du är ansluten!");
+
     }
 
     public void insertData(String todoMeddelande, boolean done, String assignedTo) {
@@ -49,7 +49,7 @@ public class Database {
         // Infoga dokumentet i samlingen
         collection.insertOne(document);
 
-        System.out.println("Todo skapades framgångsrikt!");
+
     }
 
     private int getNextId() {
@@ -101,7 +101,7 @@ public class Database {
         // Uppdatera dokumentet i samlingen
         collection.updateOne(filter, update);
 
-        System.out.println("Todo uppdaterades framgångsrikt!");
+
     }
 
     public void deleteData(int id) {
