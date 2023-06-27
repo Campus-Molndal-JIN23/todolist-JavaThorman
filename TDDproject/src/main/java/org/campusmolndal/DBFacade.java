@@ -4,13 +4,13 @@ import org.bson.Document;
 
 import java.util.List;
 
-public class DBFacade {
-    private Database database;
 
-    public DBFacade(ScannerInput scannerInput) {
-        // Initialize the Database instance and connect to the database
-        database = new Database(scannerInput);
-        database.connectToDatabase();
+
+public class DBFacade {
+   private Database database;
+
+    public DBFacade(Database database) {
+        this.database = database;
     }
 
     public void insertData(String todoMessage, boolean done, String assignedTo) {

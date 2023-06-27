@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TodoFacade {
+    private Database database;
     private DBFacade dbFacade;
 
-    public TodoFacade(ScannerInput scannerInput) {
+    public TodoFacade(ScannerInput scannerInput, Database database) {
         // Initialize the DBFacade instance with the ScannerInput
-        dbFacade = new DBFacade(scannerInput);
+        this.database = database;
+        dbFacade = new DBFacade(database);
     }
 
     public void createTodo(String message, boolean done, String assignedTo) {

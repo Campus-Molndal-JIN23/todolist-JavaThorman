@@ -9,6 +9,7 @@ import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Indexes.descending;
@@ -19,9 +20,11 @@ public class Database {
     private MongoCollection<Document> collection;
     private ScannerInput input;
 
-    public Database(ScannerInput scannerInput) {
-        this.input = scannerInput;
+    public Database() {
+        input = new ScannerInput(new Scanner(System.in));
+        connectToDatabase();
     }
+
 
     public void connectToDatabase() {
         String uri = "mongodb://localhost:27017/TodoDB";

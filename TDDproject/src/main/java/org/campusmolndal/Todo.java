@@ -1,5 +1,8 @@
 package org.campusmolndal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Todo {
     private int id;
     private String message;
@@ -7,7 +10,7 @@ public class Todo {
     private String assignedTo;
 
     public Todo() {
-        // Empty constructor to allow instantiation without parameters
+        // Default constructor
     }
 
     public Todo(int id, String message, boolean done, String assignedTo) {
@@ -17,7 +20,7 @@ public class Todo {
         this.assignedTo = assignedTo;
     }
 
-    // Getter and setter methods for all attributes
+    // Getters and setters
 
     public int getId() {
         return id;
