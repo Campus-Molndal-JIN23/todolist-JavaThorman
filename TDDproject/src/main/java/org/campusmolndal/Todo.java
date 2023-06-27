@@ -7,7 +7,7 @@ public class Todo {
     private String assignedTo;
 
     public Todo() {
-        // Tom konstruktor för att tillåta instansiering utan parametrar
+        // Empty constructor to allow instantiation without parameters
     }
 
     public Todo(int id, String message, boolean done, String assignedTo) {
@@ -17,7 +17,7 @@ public class Todo {
         this.assignedTo = assignedTo;
     }
 
-    // Getter- och setter-metoder för alla attribut
+    // Getter and setter methods for all attributes
 
     public int getId() {
         return id;

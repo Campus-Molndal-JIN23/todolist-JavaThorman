@@ -8,11 +8,13 @@ import java.util.List;
 public class TodoFacade {
     private DBFacade dbFacade;
 
-    public TodoFacade() {
-        dbFacade = new DBFacade();
+    public TodoFacade(ScannerInput scannerInput) {
+        // Initialize the DBFacade instance with the ScannerInput
+        dbFacade = new DBFacade(scannerInput);
     }
 
     public void createTodo(String message, boolean done, String assignedTo) {
+        // Call the method in DBFacade to create a new Todo
         dbFacade.insertData(message, done, assignedTo);
     }
 
@@ -20,14 +22,14 @@ public class TodoFacade {
         List<Todo> todos = new ArrayList<>();
         List<Document> documents = dbFacade.getAllData();
 
-        // Iterera över varje dokument i listan av dokument
+        // Iterate over each document in the list of documents
         for (Document document : documents) {
             int id = document.getInteger("id");
-            String message = document.getString("todoMeddelande");
+            String message = document.getString("todoMessage");
             boolean done = document.getBoolean("done");
             String assignedTo = document.getString("assignedTo");
 
-            // Skapa ett nytt Todo-objekt och lägg till det i listan av Todos
+            // Create a new Todo object and add it to the list of Todos
             Todo todo = new Todo(id, message, done, assignedTo);
             todos.add(todo);
         }
@@ -40,11 +42,11 @@ public class TodoFacade {
 
         if (document != null) {
             int todoId = document.getInteger("id");
-            String message = document.getString("todoMeddelande");
+            String message = document.getString("todoMessage");
             boolean done = document.getBoolean("done");
             String assignedTo = document.getString("assignedTo");
 
-            // Returnera ett nytt Todo-objekt baserat på dokumentet
+            // Return a new Todo object based on the document
             return new Todo(todoId, message, done, assignedTo);
         }
 
@@ -52,17 +54,17 @@ public class TodoFacade {
     }
 
     public void updateTodo(Todo todo) {
-        // Uppdatera en Todo genom att anropa metoden i DBFacade med de uppdaterade värdena
+        // Update a Todo by calling the method in DBFacade with the updated values
         dbFacade.updateData(todo.getId(), todo.getMessage(), todo.isDone(), todo.getAssignedTo());
     }
 
     public void deleteTodoById(int id) {
-        // Ta bort en Todo baserat på dess id genom att anropa metoden i DBFacade
+        // Delete a Todo based on its id by calling the method in DBFacade
         dbFacade.deleteData(id);
     }
 
     public void closeConnection() {
-        // Stäng anslutningen till databasen genom att anropa metoden i DBFacade
+        // Close the connection to the database by calling the method in DBFacade
         dbFacade.closeConnection();
     }
 }
