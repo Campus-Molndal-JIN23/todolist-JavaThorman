@@ -6,9 +6,12 @@ public class Program {
     private ScannerInput scannerInput;
     private TodoFacade todoFacade;
 
+    private Database database;
+
     public Program() {
         scannerInput = new ScannerInput(new Scanner(System.in));
-        todoFacade = new TodoFacade(scannerInput);
+        database = new Database(); // Initialize the Database instance
+        todoFacade = new TodoFacade(scannerInput, database);
     }
 
     public void start() {

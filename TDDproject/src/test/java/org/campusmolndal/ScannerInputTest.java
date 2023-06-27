@@ -14,8 +14,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class ScannerInputTest {
@@ -61,7 +59,8 @@ public class ScannerInputTest {
         // Arrange
         String invalidInput = "abc";
         int validInput = 42;
-        when(mockScanner.nextInt()).thenThrow(new InputMismatchException()) // Throw exception for the first input
+        when(mockScanner.nextInt())
+                .thenThrow(new InputMismatchException()) // Throw exception for the first input
                 .thenReturn(validInput); // Return valid input for the second input
         when(mockScanner.nextLine()).thenReturn(invalidInput, ""); // Simulate input lines
 
@@ -98,7 +97,4 @@ public class ScannerInputTest {
         // Assert
         assertEquals(validInput, actual);
     }
-
-
-
 }
