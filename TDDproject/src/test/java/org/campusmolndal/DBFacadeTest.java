@@ -19,26 +19,29 @@ public class DBFacadeTest {
     private DBFacade dbFacade;
 
     @BeforeEach
-     void setup() {
+    void setup() {
         MockitoAnnotations.initMocks(this);
         dbFacade = new DBFacade(database);
     }
 
     @Test
-     void testInsertData() {
+    void testInsertData() {
+        // Arrange
         String todoMessage = "Sample Todo";
         boolean done = false;
         String assignedTo = "John Doe";
 
-        // Call the insertData method in dbFacade
+        // Act
         dbFacade.insertData(todoMessage, done, assignedTo);
 
+        // Assert
         // Verify that the insertData method in database is called once with the correct parameters
         verify(database, times(1)).insertData(todoMessage, done, assignedTo);
     }
 
     @Test
-     void testGetAllData() {
+    void testGetAllData() {
+        // Arrange
         List<Document> expectedData = new ArrayList<>();
         expectedData.add(new Document("id", 1)
                 .append("todoMessage", "Todo 1")
@@ -52,15 +55,19 @@ public class DBFacadeTest {
         // Set up a mock response for getAllData method in database
         when(database.getAllData()).thenReturn(expectedData);
 
-        // Call the getAllData method in dbFacade and verify that it returns the expected data
+        // Act
         List<Document> actualData = dbFacade.getAllData();
 
+        // Assert
+        // Verify that the getAllData method in database is called once
         verify(database, times(1)).getAllData();
+        // Verify that the returned data matches the expected data
         assertEquals(expectedData, actualData);
     }
 
     @Test
-     void testGetDataById() {
+    void testGetDataById() {
+        // Arrange
         int id = 1;
         Document expectedData = new Document("id", 1)
                 .append("todoMessage", "Sample Todo")
@@ -70,43 +77,51 @@ public class DBFacadeTest {
         // Set up a mock response for getDataById method in database
         when(database.getDataById(id)).thenReturn(expectedData);
 
-        // Call the getDataById method in dbFacade and verify that it returns the expected data
+        // Act
         Document actualData = dbFacade.getDataById(id);
 
+        // Assert
+        // Verify that the getDataById method in database is called once with the correct parameter
         verify(database, times(1)).getDataById(id);
+        // Verify that the returned data matches the expected data
         assertEquals(expectedData, actualData);
     }
 
     @Test
-     void testUpdateData() {
+    void testUpdateData() {
+        // Arrange
         int id = 1;
         String todoMessage = "Updated Todo";
         boolean done = true;
         String assignedTo = "Jane Smith";
 
-        // Call the updateData method in dbFacade
+        // Act
         dbFacade.updateData(id, todoMessage, done, assignedTo);
 
+        // Assert
         // Verify that the updateData method in database is called once with the correct parameters
         verify(database, times(1)).updateData(id, todoMessage, done, assignedTo);
     }
 
     @Test
-     void testDeleteData() {
+    void testDeleteData() {
+        // Arrange
         int id = 1;
 
-        // Call the deleteData method in dbFacade
+        // Act
         dbFacade.deleteData(id);
 
+        // Assert
         // Verify that the deleteData method in database is called once with the correct parameter
         verify(database, times(1)).deleteData(id);
     }
 
     @Test
-     void testCloseConnection() {
-        // Call the closeConnection method in dbFacade
+    void testCloseConnection() {
+        // Act
         dbFacade.closeConnection();
 
+        // Assert
         // Verify that the closeConnection method in database is called once
         verify(database, times(1)).closeConnection();
     }
