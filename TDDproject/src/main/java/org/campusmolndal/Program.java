@@ -81,10 +81,10 @@ public class Program {
         // Retrieve all Todos from the facade and print their details
         for (Todo todo : todoFacade.getAllTodos()) {
             // Print todo details
-            scannerInput.systemOutputs("\nID: " + todo.getId());
+            scannerInput.systemOutputs("ID: " + todo.getId());
             scannerInput.systemOutputs("Message: " + todo.getMessage());
             scannerInput.systemOutputs("Done: " + todo.isDone());
-            scannerInput.systemOutputs("Assigned To: " + todo.getAssignedTo());
+            scannerInput.systemOutputs("Assigned To: " + todo.getAssignedTo() +"\n");
         }
     }
 

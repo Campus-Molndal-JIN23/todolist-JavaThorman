@@ -69,23 +69,9 @@ public class Database {
 
     public List<Document> getAllData() {
         List<Document> documents = collection.find().into(new ArrayList<>());
-
-        // Iterate over each document in the list
-        for (Document document : documents) {
-            int id = document.getInteger("id");
-            String todoMessage = document.getString("todoMessage");
-            boolean done = document.getBoolean("done");
-            String assignedTo = document.getString("assignedTo");
-
-            // Print the details of the document
-            input.systemOutputs("ID: " + id);
-            input.systemOutputs("Todo message: " + todoMessage);
-            input.systemOutputs("Done: " + done);
-            input.systemOutputs("Assigned to: " + assignedTo);
-            input.systemOutputs("------------------------------------");
-        }
         return documents;
     }
+
 
     public Document getDataById(int id) {
         // Retrieve a document based on its ID
